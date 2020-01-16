@@ -28,4 +28,4 @@ str_1 = "Name, Age, Sex, Address"
 list_1 = str_1.split(", ")
 #print(list_1)
 list_2 = " | ".join(list_1)
-print(list_2)
+#print(list_2)
