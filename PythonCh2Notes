@@ -1,0 +1,106 @@
+Python Notes
+Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex.
+
+as long as this environment is active, any libraries you install will be installed on in the dsfs environment
+
+As a matter of good discipline, you should always work in a virtual environment, and never using the “base” Python installation.
+
+when writing python you should always use spaces, never tabs!
+can use backslash \ to indicate that a stamens continues onto the next line. 
+IPython has a magic function called %paste, which correctly pastes whatever is on your clipboard. 
+
+import re
+my_regex = re.compile(“[0-9]+” , re.I)
+
+import matplotlib.pyplot as plt
+plt.plot(...)
+
+from collections import defaultdict, Counter
+Don't import the entire contents of a module because you might overwrite variables you've already defined. 
+
+def double(x)
+"""
+describte what the functions does
+"""
+python functions are first-class, we can assign them to variables and pass them into functions 
+
+Most people recommend using def for lambdas instead of assigning them to variables. 
+
+Function parameters can be give default arguments.
+def my_print(message = "my default message"):
+
+def full_name(first = "What's-his-name", last = "Something):
+    return first + " " + last
+full_name(last="Grus") # "What 's-his-name Grus"
+
+Python uses backslashes to encode special characters 
+such as tab_string = "\t"
+
+If you want backslashes as backslashes you can use not_tab_string = r"\t"
+
+f-string is a simple way to substitute values into strings
+first_name = "Joel"
+last_name = "Grus"
+we can do full_name1 = full_name + " " + last_name       #string.addition 
+OR full_name2 = "{0} {1}".format(first_name, last_name) #string.format
+finally full_name3 = f"{first_name} {last_name}" #VERY EASY!!! much less unwiedly
+
+Most fundamental data structure in Python is the list, ordered collection. (siilar to array in Java)
+integer_list [1,2,3]
+heterogenous_list = ["string", 0.1, True]
+list_of_lists = [integer_list, heterogenous_list, []]
+list_length = len(integer_list)
+list_sum = sum(integer_list)
+
+x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+nine = x[-1]
+x[0] =  -1 # x is now [-1, 1, 2...]
+
+slicing i:j inclusive of elements from i to j (not inclusive)
+leaving out the start of the slice, you'll slice the beginning of the list.
+leaving out the end of the slice, you'll slice until the end of the list. 
+first_three = x[:3]
+three_to_end = x[3:]
+one_to_four = x[1:5]
+last_three = x[-3:]
+without_first_and_last = x[1:-1]
+copy_of_x = x[:]
+
+slices can have a third argument to indicate its strike, which can be neagtive:
+every_third = x[::3] #[-1, 3, 6, 9]
+five_to_three = x[5:2:-1]
+
+can use in operator to check for list memebership 
+1 in [1,2,3] #true, checking list one at a time. Pretty slow unless list is small
+
+concatenating lists together we can use extend
+x=[1,2,3]
+x.extend([4,5,6])
+Don't want to modify x? use list addition
+x = [1, 2, 3]
+y = x + [4,5,6] #leaves x unchanged
+
+x = [1,2, 3]
+x.append(0) # x is now [1,2,3, 0]
+can unpack lists when you know how many elements they contain
+x, y = [1, 2] x is now 1, y is now 2
+if both sides don't ahve the same number of elements on both sides then it will give a ValueError
+common idiom meaning words or phrases that aren't meant to be taken literary
+_, y = [1, 2] # y == 2, don't care about the first element
+
+Tuples are lists immutable cousin
+you can do anything to a tuple like you can to a list that doesn't involve modifying it
+specify a tuple by using parentheses (or nothing) instead of square brackets. 
+my_list = [1, 2]
+my_tuple = (1, 2)
+other_tuple = 3, 4
+
+Use tuples to return multiple values from functions
+def sum_and_product(x, y):
+    return (x + y ), (x * y)
+sp = sum_and_product(2, 3) #will return (5,6)
+x, p = sum_and_product(5, 10 ) # will return s is 15, p is 50
+
+Tuples and lists can also be used for multiple assignment:
+x, y = 1, 2 # now x is 1, y is 2
+x, y = y, x #Pythonic way to swap variables: now x is 2 and y is 1
