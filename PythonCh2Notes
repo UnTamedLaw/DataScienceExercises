@@ -94,6 +94,8 @@ specify a tuple by using parentheses (or nothing) instead of square brackets.
 my_list = [1, 2]
 my_tuple = (1, 2)
 other_tuple = 3, 4
+empty_tuple = () or 
+emptyTuple = tuple()
 
 Use tuples to return multiple values from functions
 def sum_and_product(x, y):
@@ -104,3 +106,43 @@ x, p = sum_and_product(5, 10 ) # will return s is 15, p is 50
 Tuples and lists can also be used for multiple assignment:
 x, y = 1, 2 # now x is 1, y is 2
 x, y = y, x #Pythonic way to swap variables: now x is 2 and y is 1
+
+Dictionaries associates values with keys and allow you to quickly retrieve the value corresponding to a given key. 
+empty_dict = {} #Pythonic
+empty_dict2 = dict() # less Pythonic
+grades = {"Joel" : 80, "Tim" : 95 } #dictionary literal 
+
+looking up value for a key using square brackets 
+joels_grade = grades["Joel"]
+#will get KeyError if you ask for a key that's not in the dictionary 
+try:
+    kates_grade = grades["Kate"]
+except KeyError:
+    print("no grade for kate!")
+
+checking for existence of a key using in:
+joel_has_grade = "Joel" in grades #true
+#checking this way is fast even for large dictionaries. 
+
+Dictionaries has a get method that returns a default value when you look up a key thats not in the dictionary:
+joels_grade = grades.get("Joel", 0) #equals 80
+kates_grade = grades.get("Kate", 0) #equals 0
+no_ones_grade = grades.get("No One") #default is None
+
+reassigning key/value pairs 
+grades["Tim"] = 99   #replaces the old value
+grades["Kate"] = 100 #adds a third entry
+num_students = len(grades)
+
+
+#not the best approach theres a better one!
+tweet = {
+    "user" : "joelgrus",
+    "text" : "Data Science is Awesome",
+    "retweet_count" : 100,
+    "hashtags" : ["#data", "#science", "#datascience", "#awesome", "#yolo"]
+}
+
+tweet_keys = tweet.keys()       #iterable for the keys #iterable means an object that can be iterated over such as in a for-loop
+tweet_values = tweet.values()
+tweet_items = tweet.items()
