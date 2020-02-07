@@ -1,0 +1,8 @@
+Stacks LIFO Last In First Out
+stack = []
+stack.append(25)
+stack.append(-12)
+tos = stack.pop()tos #tos will have -12 and stack will have 25
+
+capitals = [("USA", "Washington"), ("India", "Delhi"), ("France", "Paris"), ("UK", "London")]
+capitals.sort(key = lambda item : item[1])

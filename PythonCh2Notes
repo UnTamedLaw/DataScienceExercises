@@ -144,5 +144,73 @@ tweet = {
 }
 
 tweet_keys = tweet.keys()       #iterable for the keys #iterable means an object that can be iterated over such as in a for-loop
-tweet_values = tweet.values()
-tweet_items = tweet.items()
+tweet_values = tweet.values()   #iterable for the values
+tweet_items = tweet.items()     #iterable for the (key, value) tuples 
+
+#want to check for keys? look in the dictionary not the variable for the keys. 
+
+"user" in tweet_keys #true but not Pythonic
+"user" in tweet      #Pythonic way of checking for keys
+"joelgrus" in tweet_values #true (but the only way to check.
+
+Dictionary keys must be "hashable", CAN'T use lists as keys. If you must use a multipart key,
+probably use a TUPLE or STRING!
+
+defaultdict is used to count the words in a document. Obvious approach is to create a dictionary in which the keys are words 
+and the values are counts. Can increment its count if its already in the dictionary and add it to the dictionary if its not!
+
+word_counts = {}
+for word in document:
+    if word in word_counts:
+        word_counts[word] += 1
+    else:
+        word_counts[word] = 1
+
+"forgiveness is better than permission" approach to handle the exception from tyring to look up the missing key
+
+word_counts = {}
+for word in document:
+    try:
+        word_counts[word] += 1
+    except KeyError:
+        word_counts[word] += 1
+
+third approach is to use get
+word_counts = {}
+for word in document:
+    previous_count = word_counts.get(word, 0)
+    word_counts[word] = previous_count + 1
+
+all three approaches are slightly unwiedly, which is why defaultdict is useful. 
+
+when you try to look up a default dict key it doesn't contain, it first adds a value for it using a zero-argument function you provided
+when creating it. 
+
+from collections import defaultdict
+
+word_counts = defaultdict(int)  #int() produces 0
+for word in document:
+    word_counts[word] += 1
+
+can be useful with list or dict
+dd_list = defaultdict(list) #list() produces an empty list
+dd_list[2].append(1)        # now dd_list contains {2: [1]}
+
+dd_dict = defaultdict(dict)   #dict() produces an empty dict
+dd_dict["Joel"]["City"] = "Seattle"  #{"Joel" : {"City" : Seattle" }}
+
+dd_pair = defaultdict(lambda: [0,0])
+dd_pair[2][1] = 1             # now dd_pair contains {2: [0,1]}
+
+Counter turns a sequence of values into a defaultdict(int)-like object mapping keys to counts:
+
+from collections import Counter
+c = Counter([0, 1, 2, 0])   # c is (basically) {0:2, 1:1, 2: 1}
+
+# document is a list of words
+word_counts = Counter(document)
+
+Counter instances has a most_common method that is frequently useful:
+#print the 10 most common words and their counts
+for word, count in word_counts.most_common(10):
+
